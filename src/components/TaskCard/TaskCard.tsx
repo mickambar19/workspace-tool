@@ -11,11 +11,14 @@ const TASK_STATUSES = ['ACTIVE', 'DONE', 'DELETED']
 
 export type TaskStatus = typeof TASK_STATUSES[number]
 
-type Task = {
-  id: number
+type TaskCardProps = {
+  id: string
   priority: string
   text: string
   status: TaskStatus
+  onDelete: () => void
+  onDone: () => void
+  onFinishMovingCard: () => void
 }
 
 const TaskCard = ({
@@ -26,7 +29,7 @@ const TaskCard = ({
   onDelete,
   onDone,
   onFinishMovingCard
-}: Task) => {
+}: TaskCardProps) => {
   return (
     <Card
       draggable

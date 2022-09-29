@@ -16,24 +16,41 @@ const PendingTasksDashboard = () => {
     deleteTask,
     markTaskAsDone,
     updateTaskPosition
+  }: {
+    availableTasks: []
+    deletedTasks: []
+    addTask: (task: any) => void
+    deleteTask: () => void
+    markTaskAsDone: () => void
+    updateTaskPosition: () => void
   } = useTasks()
   return (
     <RootStyled>
       <TasksContainerStyled>
         <TaskForm
-          onSubmit={taskInfo => {
+          onSubmit={(taskInfo: any) => {
             addTask(taskInfo)
           }}
         />
-        {availableTasks.map(task => (
-          <TaskCard
-            key={task.id}
-            {...task}
-            onDelete={deleteTask}
-            onDone={markTaskAsDone}
-            onFinishMovingCard={updateTaskPosition}
-          />
-        ))}
+        {availableTasks.map(
+          (task: {
+            id: string
+            priority: string
+            text: string
+            status: string
+          }) => (
+            <TaskCard
+              key={task.id}
+              id={task.id}
+              priority={task.priority}
+              text={task.text}
+              status={task.status}
+              onDelete={deleteTask}
+              onDone={markTaskAsDone}
+              onFinishMovingCard={updateTaskPosition}
+            />
+          )
+        )}
       </TasksContainerStyled>
       <CountersContainerStyled>
         <span>Active: {availableTasks.length}</span>

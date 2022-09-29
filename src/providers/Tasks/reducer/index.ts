@@ -66,7 +66,7 @@ const reducer = (state, { type, payload = {} }) => {
       }
     }
     case TYPES.UPDATE_TASK_POSITION: {
-      const { fromTaskId, toTaskId } = payload
+      const { fromTaskId, toTaskId }: Movement = payload
       const fromTaskIdx = state.availableTasks.findIndex(
         task => task.id === fromTaskId
       )
