@@ -18,10 +18,26 @@ type Task = {
   status: TaskStatus
 }
 
-const TaskCard = ({ id, priority, text, status, onDelete, onDone }: Task) => {
+const TaskCard = ({
+  id,
+  priority,
+  text,
+  status,
+  onDelete,
+  onDone,
+  onFinishMovingCard
+}: Task) => {
   return (
-    <Card>
-      {/* {id} */}
+    <Card
+      draggable
+      onDragStart={e => {
+        e.dataTransfer.setData('taskId', id)
+      }}
+      onDrop={e => {
+        const fromTaskId = e.dataTransfer.getData('taskId')
+        onFinishMovingCard({ fromTaskId, toTaskId: id })
+      }}
+      onDragOver={e => e.preventDefault()}>
       <DeleteButtonStyled onClick={() => onDelete({ id, status })}>
         <FaTimes />
       </DeleteButtonStyled>

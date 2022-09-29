@@ -14,7 +14,8 @@ const PendingTasksDashboard = () => {
     deletedTasks = [],
     addTask,
     deleteTask,
-    markTaskAsDone
+    markTaskAsDone,
+    updateTaskPosition
   } = useTasks()
   return (
     <RootStyled>
@@ -30,6 +31,7 @@ const PendingTasksDashboard = () => {
             {...task}
             onDelete={deleteTask}
             onDone={markTaskAsDone}
+            onFinishMovingCard={updateTaskPosition}
           />
         ))}
       </TasksContainerStyled>

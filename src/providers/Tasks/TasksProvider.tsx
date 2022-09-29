@@ -1,6 +1,11 @@
 import React, { useMemo, useEffect, useReducer } from 'react'
 import reducer from './reducer'
-import { addTask, deleteTask, markTaskAsDone } from './reducer/actions'
+import {
+  addTask,
+  deleteTask,
+  markTaskAsDone,
+  updateTaskPosition
+} from './reducer/actions'
 import { TASKS_STORAGE_KEY } from './consts'
 const TasksContext = React.createContext(null)
 
@@ -36,7 +41,8 @@ const TasksProvider = ({ children }) => {
       ...state,
       addTask: addTask(dispatch),
       deleteTask: deleteTask(dispatch),
-      markTaskAsDone: markTaskAsDone(dispatch)
+      markTaskAsDone: markTaskAsDone(dispatch),
+      updateTaskPosition: updateTaskPosition(dispatch)
     }),
     [state]
   )

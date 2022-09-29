@@ -33,13 +33,14 @@ const CardStyled = styled.div`
 
 const Card = ({
   className,
-  children
+  children,
+  ...props
 }: {
   className?: string
   children: React.ReactNode
 }) => {
   return (
-    <RootStyled>
+    <RootStyled {...props}>
       <CardStyled className={className}>{children}</CardStyled>
     </RootStyled>
   )

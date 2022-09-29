@@ -65,6 +65,26 @@ const reducer = (state, { type, payload = {} }) => {
         ]
       }
     }
+    case TYPES.UPDATE_TASK_POSITION: {
+      const { fromTaskId, toTaskId } = payload
+      const fromTaskIdx = state.availableTasks.findIndex(
+        task => task.id === fromTaskId
+      )
+      const oldTask = state.availableTasks[fromTaskIdx]
+
+      const newAvailableTasks = [
+        ...state.availableTasks.slice(0, fromTaskIdx),
+        ...state.availableTasks.slice(fromTaskIdx + 1)
+      ]
+      const toTaskIdx = newAvailableTasks.findIndex(
+        task => task.id === toTaskId
+      )
+      newAvailableTasks.splice(toTaskIdx, 0, oldTask)
+      return {
+        ...state,
+        availableTasks: [...newAvailableTasks]
+      }
+    }
 
     default:
       return state

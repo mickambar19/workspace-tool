@@ -34,3 +34,15 @@ export const markTaskAsDone =
       }
     })
   }
+
+export const updateTaskPosition =
+  dispatch =>
+  ({ fromTaskId, toTaskId }) => {
+    dispatch({
+      type: TYPES.UPDATE_TASK_POSITION,
+      payload: {
+        fromTaskId,
+        toTaskId
+      }
+    })
+  }
