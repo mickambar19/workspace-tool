@@ -37,8 +37,8 @@
   },
   "lint-staged": {
     "*": [
-      "format",
-      "lint"
+      "npm run format",
+      "npm run lint"
     ]
   }
 }
